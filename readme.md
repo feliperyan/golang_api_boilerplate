@@ -14,5 +14,5 @@ The `login` and `new` take a JSON payload of `{"email": "valar@morghulis.com", "
 
 While `dummy` required an Authorisation Header with the Bearer token issues by user creation or log in.
 
-This repo is heavily based on Adigun Olalekan's excellent post here:
-https://medium.com/@adigunhammedolalekan/build-and-deploy-a-secure-rest-api-with-go-postgresql-jwt-and-gorm-6fadf3da505b
+>This repo is heavily based on Adigun Olalekan's excellent post here:
+>https://medium.com/@adigunhammedolalekan/build-and-deploy-a-secure-rest-api-with-go-postgresql-jwt-and-gorm-6fadf3da505b
