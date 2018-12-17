@@ -54,8 +54,17 @@ var JwtAuthentication = func(next http.Handler) http.Handler {
 		})
 
 		if err != nil { //Malformed token, returns with http code 403 as usual
-			fmt.Println(err)
+
 			issue := fmt.Sprintf("Problem with authentication token: %s", err)
+
+			if e, ok := err.(*jwt.ValidationError); ok {
+				if e.Errors&jwt.ValidationErrorExpired != 0 {
+					issue = fmt.Sprintf("Your token is too old! %s", err)
+				}
+			}
+
+			fmt.Println(err)
+
 			response = Message(false, issue)
 
 			w.WriteHeader(http.StatusForbidden)
