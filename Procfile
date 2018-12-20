@@ -1,0 +1,1 @@
+web: bin/go_api_example_1

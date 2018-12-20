@@ -1,0 +1,22 @@
+version: "3"
+services:
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_USER=docker
+  
+  web:
+    build: .
+    environment:
+      - db_user=docker
+      - db_pass=docker
+      - db_name=docker
+      - db_host=db
+      - PORT=8000
+      - indocker=dockercompose
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db

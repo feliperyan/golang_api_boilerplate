@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.17.0 ()
+  creationTimestamp: null
+  labels:
+    io.kompose.service: web
+  name: web
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: web
+    spec:
+      containers:
+      - env:
+        - name: PORT
+          value: "8000"
+        - name: db_host
+          value: db
+        - name: db_name
+          value: docker
+        - name: db_pass
+          value: docker
+        - name: db_user
+          value: docker
+        - name: indocker
+          value: dockercompose
+        image: fryan-go-simple
+        name: web
+        ports:
+        - containerPort: 8000
+        resources: {}
+        imagePullPolicy: Never
+      restartPolicy: Always
+status: {}
