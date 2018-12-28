@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
+	"math/rand"
 	"os"
 	"strings"
 	"time"
@@ -13,6 +15,7 @@ import (
 )
 
 var db *gorm.DB //database
+var quotes *[]string
 
 func ReadyDB() {
 
@@ -140,4 +143,26 @@ func GetUserAccount(uid uint) *UserAccount {
 	}
 	uAcc.Password = ""
 	return uAcc
+}
+
+func PrepareQuotes() {
+	bytes, err := ioutil.ReadFile("einstein_quotes.txt")
+	if err != nil {
+		fmt.Printf("Error opening file: %s", err)
+		return
+	} else {
+		s := string(bytes)
+		q := strings.Split(s, "\n")
+		quotes = &q
+	}
+}
+
+func GetRandomQuote() string {
+	if quotes == nil {
+		PrepareQuotes()
+	}
+
+	rand.Seed(time.Now().UnixNano())
+	num := rand.Intn(len(*quotes))
+	return (*quotes)[num] // stupid syntax, more info: https://flaviocopes.com/golang-does-not-support-indexing/
 }

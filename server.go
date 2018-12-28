@@ -10,6 +10,7 @@ import (
 	"github.com/gorilla/mux"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/joho/godotenv"
+	"github.com/rs/cors"
 )
 
 // our main function
@@ -21,7 +22,6 @@ func main() {
 		fmt.Print(e)
 	}
 	compose := os.Getenv("indocker")
-
 	if compose == "dockercompose" {
 		fmt.Println("Sleeping for 5 to wait for DB")
 		time.Sleep(time.Second * 5)
@@ -36,8 +36,17 @@ func main() {
 
 	router.HandleFunc("/api/user/new", CreateAccount).Methods("POST")
 	router.HandleFunc("/api/user/login", Authenticate).Methods("POST")
-	router.HandleFunc("/api/dummy", DummyResponse).Methods("GET")
+	router.HandleFunc("/api/quote", QuoteResponse).Methods("GET")
 
 	p := fmt.Sprintf(":%v", port)
-	log.Fatal(http.ListenAndServe(p, router))
+
+	c := cors.New(cors.Options{
+		AllowedOrigins:   []string{"http://localhost:3000"},
+		AllowCredentials: true,
+		AllowedHeaders:   []string{"Authorization", "Content-Type"},
+		Debug:            true,
+	})
+
+	handler := c.Handler(router)
+	log.Fatal(http.ListenAndServe(p, handler))
 }

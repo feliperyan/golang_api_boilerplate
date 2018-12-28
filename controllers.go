@@ -6,7 +6,6 @@ import (
 )
 
 var CreateAccount = func(w http.ResponseWriter, r *http.Request) {
-
 	userAccount := &UserAccount{}
 	err := json.NewDecoder(r.Body).Decode(userAccount) //decode the request body into struct and failed if any error occur
 	if err != nil {
@@ -19,7 +18,6 @@ var CreateAccount = func(w http.ResponseWriter, r *http.Request) {
 }
 
 var Authenticate = func(w http.ResponseWriter, r *http.Request) {
-
 	userAccount := &UserAccount{}
 	err := json.NewDecoder(r.Body).Decode(userAccount) //decode the request body into struct and failed if any error occur
 	if err != nil {
@@ -31,8 +29,8 @@ var Authenticate = func(w http.ResponseWriter, r *http.Request) {
 	Respond(w, resp)
 }
 
-func DummyResponse(w http.ResponseWriter, r *http.Request) {
+func QuoteResponse(w http.ResponseWriter, r *http.Request) {
 	resp := Message(true, "Success")
-	resp["data"] = "Aloha Mahalo!"
+	resp["data"] = GetRandomQuote()
 	Respond(w, resp)
 }
