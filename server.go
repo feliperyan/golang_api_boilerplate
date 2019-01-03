@@ -6,11 +6,11 @@ import (
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/joho/godotenv"
-	"github.com/rs/cors"
-	"github.com/gorilla/handlers"
 )
 
 // our main function
@@ -40,15 +40,17 @@ func main() {
 
 	p := fmt.Sprintf(":%v", port)
 
-	c := cors.New(cors.Options{
-		AllowedOrigins:   []string{"http://localhost:3000"},
-		AllowCredentials: true,
-		AllowedHeaders:   []string{"Authorization", "Content-Type"},
-		Debug:            true,
-	})
-
 	loggedRouter := handlers.LoggingHandler(os.Stdout, router)
 
-	handler := c.Handler(loggedRouter)
-	log.Fatal(http.ListenAndServe(p, handler))
+	// c := cors.New(cors.Options{
+	// 	AllowedOrigins:   []string{"*"},
+	// 	AllowCredentials: true,
+	// 	AllowedHeaders:   []string{"Authorization", "Content-Type"},
+	// 	Debug:            true,
+	// })
+	// handler := c.Handler(loggedRouter)
+
+	// log.Fatal(http.ListenAndServe(p, handler))
+
+	log.Fatal(http.ListenAndServe(p, loggedRouter))
 }
