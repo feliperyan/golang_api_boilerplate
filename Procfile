@@ -1,1 +1,1 @@
-web: bin/go_api_example_1
+web: bin/go_api_boilerplate

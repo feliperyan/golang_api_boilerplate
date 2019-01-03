@@ -1,4 +1,4 @@
 .env
 *.idea
 .DS_Store
-golangapi_mod
+golang_api_boilerplate
