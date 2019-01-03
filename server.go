@@ -11,6 +11,7 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/joho/godotenv"
 	"github.com/rs/cors"
+	"github.com/gorilla/handlers"
 )
 
 // our main function
@@ -47,6 +48,8 @@ func main() {
 		Debug:            true,
 	})
 
-	handler := c.Handler(router)
+	loggedRouter := handlers.LoggingHandler(os.Stdout, router)
+
+	handler := c.Handler(loggedRouter)
 	log.Fatal(http.ListenAndServe(p, handler))
 }
