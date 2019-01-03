@@ -1,1 +1,1 @@
-web: go bin/go_api_boilerplate
+web: bin/golang_api_boilerplate
