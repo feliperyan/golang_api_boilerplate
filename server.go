@@ -27,7 +27,7 @@ func main() {
 		time.Sleep(time.Second * 5)
 	}
 
-	ReadyDB()
+	// ReadyDB()
 
 	port := os.Getenv("PORT")
 
