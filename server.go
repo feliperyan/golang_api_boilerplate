@@ -27,7 +27,7 @@ func main() {
 		time.Sleep(time.Second * 5)
 	}
 
-	//ReadyDB()
+	// ReadyDB()
 
 	port := os.Getenv("PORT")
 
@@ -41,16 +41,6 @@ func main() {
 	p := fmt.Sprintf(":%v", port)
 
 	loggedRouter := handlers.LoggingHandler(os.Stdout, router)
-
-	// c := cors.New(cors.Options{
-	// 	AllowedOrigins:   []string{"*"},
-	// 	AllowCredentials: true,
-	// 	AllowedHeaders:   []string{"Authorization", "Content-Type"},
-	// 	Debug:            true,
-	// })
-	// handler := c.Handler(loggedRouter)
-
-	// log.Fatal(http.ListenAndServe(p, handler))
 
 	log.Fatal(http.ListenAndServe(p, loggedRouter))
 }
