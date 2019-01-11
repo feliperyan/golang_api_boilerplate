@@ -27,7 +27,9 @@ func main() {
 		time.Sleep(time.Second * 5)
 	}
 
-	// ReadyDB()
+	if needsAuth := os.Getenv("NEEDS_AUTH"); needsAuth == "yes" {
+		ReadyDB()
+	}
 
 	port := os.Getenv("PORT")
 

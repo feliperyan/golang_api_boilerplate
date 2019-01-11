@@ -20,6 +20,13 @@ var JwtAuthentication = func(next http.Handler) http.Handler {
 			"/api/quote",
 		}
 
+		if needsAuth := os.Getenv("NEEDS_AUTH"); needsAuth == "yes" {
+			notAuth = []string{
+				"/api/user/new",
+				"/api/user/login",
+			}
+		}
+
 		requestPath := r.URL.Path //current request path
 
 		//check if request does not need authentication, serve the request if it doesn't need it
