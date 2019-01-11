@@ -127,7 +127,7 @@ func Login(email, password string) map[string]interface{} {
 	tk := &Token{UserId: userAccount.ID}
 	tk.ExpiresAt = time.Now().UTC().Add((600 * time.Second)).Unix()
 	token := jwt.NewWithClaims(jwt.GetSigningMethod("HS256"), tk)
-	tokenString, _ := token.SignedString([]byte(os.Getenv("token_password")))
+	tokenString, _ := token.SignedString([]byte(os.Getenv("TOKEN_PASSWORD")))
 	userAccount.Token = tokenString
 
 	resp := Message(true, "Logged In")
