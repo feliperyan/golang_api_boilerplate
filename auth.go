@@ -17,6 +17,7 @@ var JwtAuthentication = func(next http.Handler) http.Handler {
 		notAuth := []string{
 			"/api/user/new",
 			"/api/user/login",
+			"/api/quote",
 		}
 
 		requestPath := r.URL.Path //current request path
