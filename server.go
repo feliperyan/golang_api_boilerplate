@@ -28,6 +28,7 @@ func main() {
 	}
 
 	if needsAuth := os.Getenv("NEEDS_AUTH"); needsAuth == "yes" {
+		fmt.Println("Readying DB")
 		ReadyDB()
 	}
 

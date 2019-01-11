@@ -21,6 +21,7 @@ var JwtAuthentication = func(next http.Handler) http.Handler {
 		}
 
 		if needsAuth := os.Getenv("NEEDS_AUTH"); needsAuth == "yes" {
+			fmt.Println("Auth needed for quote api")
 			notAuth = []string{
 				"/api/user/new",
 				"/api/user/login",
