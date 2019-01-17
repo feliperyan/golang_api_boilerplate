@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
-	"math/rand"
+	//"math/rand"
 	"os"
 	"strings"
 	"time"
