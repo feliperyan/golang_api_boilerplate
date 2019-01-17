@@ -1,6 +1,6 @@
 {
   "addons": [
-    "heroku-postgresql"
+    "heroku-postgresql:hobby-dev"
   ],
   "buildpacks": [
     {
@@ -16,6 +16,7 @@
     }
   },
   "formation": {
+
   },
   "name": "golang_api_boilerplate",
   "scripts": {

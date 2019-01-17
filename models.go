@@ -145,21 +145,21 @@ func GetUserAccount(uid uint) *UserAccount {
 	return uAcc
 }
 
-func PrepareQuotes() {
+func PrepareQuotes() *[]string {
 	bytes, err := ioutil.ReadFile("einstein_quotes.txt")
 	if err != nil {
 		fmt.Printf("Error opening file: %s", err)
-		return
+		return nil
 	} else {
 		s := string(bytes)
 		q := strings.Split(s, "\n")
-		quotes = &q
+		return &q
 	}
 }
 
 func GetRandomQuote() string {
 	if quotes == nil {
-		PrepareQuotes()
+		quotes = PrepareQuotes()
 	}
 
 	rand.Seed(time.Now().UnixNano())
