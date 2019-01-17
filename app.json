@@ -15,9 +15,7 @@
       "generator": "secret"
     }
   },
-  "formation": {
-
-  },
+  "formation": {},
   "name": "golang_api_boilerplate",
   "scripts": {
   },
