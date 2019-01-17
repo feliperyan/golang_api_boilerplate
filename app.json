@@ -15,9 +15,15 @@
       "generator": "secret"
     }
   },
-  "formation": {
-
+  "test": {
+    "env": {
+      "NEEDS_AUTH": "no"
+    },
+    "scripts": {
+      "test": "go test"
+    }
   },
+  "formation": {},
   "name": "golang_api_boilerplate",
   "scripts": {
   },
