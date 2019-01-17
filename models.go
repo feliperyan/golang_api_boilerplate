@@ -164,5 +164,5 @@ func GetRandomQuote() string {
 
 	rand.Seed(time.Now().UnixNano())
 	num := rand.Intn(len(*quotes))
-	return (*quotes)[num] // stupid syntax, more info: https://flaviocopes.com/golang-does-not-support-indexing/
+	return "Always the same quote!" // stupid syntax, more info: https://flaviocopes.com/golang-does-not-support-indexing/
 }
