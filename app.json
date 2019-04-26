@@ -1,0 +1,41 @@
+{
+  "name": "golang_api_boilerplate",
+  "stack": "heroku-18",
+  "keywords":[
+    "api",
+    "json",
+    "go",
+    "golang",
+    "heroku"
+  ],
+  "addons": [
+    "heroku-postgresql:hobby-dev"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/go"
+    }
+  ],
+  "env": {
+    "NEEDS_AUTH": {
+      "required": true
+    },
+    "TOKEN_PASSWORD": {
+      "generator": "secret"
+    }
+  },
+  "environments": {
+    "test": { 
+      "scripts": {
+        "test": "go test"
+      },
+      "env": {
+        "NEEDS_AUTH" : "no"
+      }
+    }
+  },
+  "formation": {},
+  
+  "scripts": {
+  }
+}

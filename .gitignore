@@ -1,0 +1,4 @@
+.env
+*.idea
+.DS_Store
+golang_api_boilerplate

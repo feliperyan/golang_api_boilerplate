@@ -1,0 +1,10 @@
+FROM golang:1.12
+
+WORKDIR /go_api_example_1
+COPY . .
+
+RUN go mod init go_api_example_1
+RUN go mod download
+
+RUN go build -o the_app .
+CMD ["./the_app"]
