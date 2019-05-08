@@ -8,7 +8,7 @@ import (
 )
 
 func TestQuote(t *testing.T) {
-	quote := PrepareQuotes()
+	quote := prepareQuotes()
 	if len(*quote) <= 10 {
 		t.Errorf("Quotes was too short, got: %d, want at least %d.", len(*quote), 10)
 	}
@@ -21,7 +21,7 @@ func TestQuoteApi(t *testing.T) {
 	}
 
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(QuoteResponse)
+	handler := http.HandlerFunc(quoteResponse)
 
 	handler.ServeHTTP(rr, req)
 

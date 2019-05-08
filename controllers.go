@@ -5,32 +5,32 @@ import (
 	"net/http"
 )
 
-var CreateAccount = func(w http.ResponseWriter, r *http.Request) {
-	userAccount := &UserAccount{}
-	err := json.NewDecoder(r.Body).Decode(userAccount) //decode the request body into struct and failed if any error occur
+var createAccount = func(w http.ResponseWriter, r *http.Request) {
+	someUser := &userAccount{}
+	err := json.NewDecoder(r.Body).Decode(someUser) //decode the request body into struct and failed if any error occur
 	if err != nil {
-		Respond(w, Message(false, "Invalid request"))
+		respond(w, message(false, "Invalid request"))
 		return
 	}
 
-	resp := userAccount.Create() //Create account
-	Respond(w, resp)
+	resp := someUser.Create() //Create account
+	respond(w, resp)
 }
 
-var Authenticate = func(w http.ResponseWriter, r *http.Request) {
-	userAccount := &UserAccount{}
-	err := json.NewDecoder(r.Body).Decode(userAccount) //decode the request body into struct and failed if any error occur
+var authenticate = func(w http.ResponseWriter, r *http.Request) {
+	someUser := &userAccount{}
+	err := json.NewDecoder(r.Body).Decode(someUser) //decode the request body into struct and failed if any error occur
 	if err != nil {
-		Respond(w, Message(false, "Invalid request"))
+		respond(w, message(false, "Invalid request"))
 		return
 	}
 
-	resp := Login(userAccount.Email, userAccount.Password)
-	Respond(w, resp)
+	resp := login(someUser.Email, someUser.Password)
+	respond(w, resp)
 }
 
-func QuoteResponse(w http.ResponseWriter, r *http.Request) {
-	resp := Message(true, "Success")
-	resp["data"] = GetRandomQuote()
-	Respond(w, resp)
+func quoteResponse(w http.ResponseWriter, r *http.Request) {
+	resp := message(true, "Success")
+	resp["data"] = getRandomQuote()
+	respond(w, resp)
 }

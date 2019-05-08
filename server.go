@@ -29,17 +29,17 @@ func main() {
 
 	if needsAuth := os.Getenv("NEEDS_AUTH"); needsAuth == "yes" {
 		fmt.Println("Readying DB")
-		ReadyDB()
+		readyDB()
 	}
 
 	port := os.Getenv("PORT")
 
 	router := mux.NewRouter()
-	router.Use(JwtAuthentication)
+	router.Use(jwtAuthentication)
 
-	router.HandleFunc("/api/user/new", CreateAccount).Methods("POST")
-	router.HandleFunc("/api/user/login", Authenticate).Methods("POST")
-	router.HandleFunc("/api/quote", QuoteResponse).Methods("GET")
+	router.HandleFunc("/api/user/new", createAccount).Methods("POST")
+	router.HandleFunc("/api/user/login", authenticate).Methods("POST")
+	router.HandleFunc("/api/quote", quoteResponse).Methods("GET")
 
 	p := fmt.Sprintf(":%v", port)
 
