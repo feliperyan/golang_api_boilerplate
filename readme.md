@@ -1,8 +1,8 @@
-# Go API example with JWT auth
+# Go API example with JWT auth 
 
 ### Boiler plate code for APIs protected by username/login and javascript web token with a 10 minute expiry time.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/feliperyan/golang_api_boilerplate)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/feliperyan/golang_api_boilerplate) [![Go Report Card](https://goreportcard.com/badge/github.com/heroku-examples/golang-jwt-api-boilerplate)](https://goreportcard.com/badge/github.com/heroku-examples/golang-jwt-api-boilerplate)
 
 **Companion app, which provides the UI for this API server**
 - https://github.com/feliperyan/react_materialui_boilerplate
