@@ -41,7 +41,7 @@ var jwtAuthentication = func(next http.Handler) http.Handler {
 			}
 		}
 
-		var response = make(map[string]interface{})
+		var response map[string]interface{}
 		tokenHeader := r.Header.Get("Authorization") //Grab the token from the header
 
 		if tokenHeader == "" { //token is missing, returns with error code 403 Unauthorized
