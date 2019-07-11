@@ -1,4 +1,3 @@
-// +heroku goVersion go1.11
 module github.com/feliperyan/golang_api_boilerplate
 
 go 1.12
