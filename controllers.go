@@ -31,6 +31,12 @@ var authenticate = func(w http.ResponseWriter, r *http.Request) {
 
 func quoteResponse(w http.ResponseWriter, r *http.Request) {
 	resp := message(true, "Success")
-	resp["data"] = getRandomQuote()
+	resp["data"] = getRandomQuote("English")
+	respond(w, resp)
+}
+
+func quoteResponseFrench(w http.ResponseWriter, r *http.Request) {
+	resp := message(true, "Success")
+	resp["data"] = getRandomQuote("French")
 	respond(w, resp)
 }

@@ -40,6 +40,7 @@ func main() {
 	router.HandleFunc("/api/user/new", createAccount).Methods("POST")
 	router.HandleFunc("/api/user/login", authenticate).Methods("POST")
 	router.HandleFunc("/api/quote", quoteResponse).Methods("GET")
+	router.HandleFunc("/api/quote/fr", quoteResponseFrench).Methods("GET")
 
 	p := fmt.Sprintf(":%v", port)
 

@@ -20,6 +20,7 @@ var jwtAuthentication = func(next http.Handler) http.Handler {
 			"/api/user/new",
 			"/api/user/login",
 			"/api/quote",
+			"/api/quote/fr",
 		}
 
 		if needsAuth := os.Getenv("NEEDS_AUTH"); needsAuth == "yes" {

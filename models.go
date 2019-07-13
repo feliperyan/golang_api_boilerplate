@@ -15,7 +15,8 @@ import (
 )
 
 var db *gorm.DB //database
-var quotes *[]string
+var quotesEn *[]string
+var quotesFr *[]string
 
 func readyDB() {
 
@@ -145,8 +146,8 @@ func getuserAccount(uid uint) *userAccount {
 	return uAcc
 }
 
-func prepareQuotes() *[]string {
-	bytes, err := ioutil.ReadFile("einstein_quotes.txt")
+func prepareQuotes(filePath string) *[]string {
+	bytes, err := ioutil.ReadFile(filePath)
 	if err != nil {
 		fmt.Printf("Error opening file: %s", err)
 		return nil
@@ -156,13 +157,23 @@ func prepareQuotes() *[]string {
 	return &q
 }
 
-func getRandomQuote() string {
-	if quotes == nil {
-		quotes = prepareQuotes()
+func getRandomQuote(language string) string {
+	if quotesEn == nil || quotesFr == nil {
+		quotesEn = prepareQuotes("einstein_quotes_en.txt")
+		quotesFr = prepareQuotes("einstein_quotes_fr.txt")
 	}
 
 	rand.Seed(time.Now().UnixNano())
-	num := rand.Intn(len(*quotes))
-	s := (*quotes)[num] // stupid syntax, more info: https://flaviocopes.com/golang-does-not-support-indexing/
-	return fmt.Sprintf("Einstein said: %s", s)
+
+	if language == "English" {
+		num := rand.Intn(len(*quotesEn))
+		s := (*quotesEn)[num] // strange syntax, more info: https://flaviocopes.com/golang-does-not-support-indexing/
+		return fmt.Sprintf("Einstein said: %s", s)
+	}
+
+	// if not English then French. Not the best design but I don't plan a 3rd language.
+	num := rand.Intn(len(*quotesFr))
+	s := (*quotesFr)[num]
+	return fmt.Sprintf("Einstein a dit: %s", s)
+
 }

@@ -8,7 +8,7 @@ import (
 )
 
 func TestQuote(t *testing.T) {
-	quote := prepareQuotes()
+	quote := prepareQuotes("einstein_quotes_en.txt")
 	if len(*quote) <= 10 {
 		t.Errorf("Quotes was too short, got: %d, want at least %d.", len(*quote), 10)
 	}
